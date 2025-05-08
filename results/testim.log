@@ -1,0 +1,21 @@
+Starting Testim.io CLI
+Run anonymous () test plan with default configs, Project: J9u1Q14Ke7VDKExPEztR, Branch: master (ZTd2G7DZdVvxMqVN)
+-----------------------------------------------------------------------------------
+Test list:
+	 1 : Login (z5KkxdYIb5XsjSx2) - 1 / 1 Data set
+	 2 : Navigate index page (td8pitosyIwutcgF) - 1 / 1 Data set
+-----------------------------------------------------------------------------------
+W:1 Test "Login" started (z5KkxdYIb5XsjSx2) url: https://app.testim.io/#/project/J9u1Q14Ke7VDKExPEztR/branch/master/test/z5KkxdYIb5XsjSx2?result-id=nw0QH76mWwcCfZYY
+W:2 Test "Navigate index page" started (td8pitosyIwutcgF) url: https://app.testim.io/#/project/J9u1Q14Ke7VDKExPEztR/branch/master/test/td8pitosyIwutcgF?result-id=gT5F78CiPMQxCLSz
+W:1 Get browser to run Login
+W:2 Get browser to run Navigate index page
+W:2 Wait for test start
+W:1 Wait for test start
+W:2 Wait for test complete
+W:1 Wait for test complete
+W:1 Test "Login" finished status: PASSED (z5KkxdYIb5XsjSx2) duration: 00:00:08.194
+W:2 Test "Navigate index page" finished status: PASSED (td8pitosyIwutcgF) duration: 00:00:10.785
+-----------------------------------------------------------------------------------
+Test plan anonymous () completed PASSED: 2 FAILED: 0 FAILED-EVALUATING: 0 ABORTED: 0 SKIPPED: 0 Duration: 00:00:26.214 (ZTd2G7DZdVvxMqVN)
+-----------------------------------------------------------------------------------
+JUnit XML file saved to results/test-results.xml

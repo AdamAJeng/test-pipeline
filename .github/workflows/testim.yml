@@ -1,0 +1,39 @@
+name: Run Testim Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testim:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout code
+      uses: actions/checkout@v3
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: 📦 Install dependencies
+      run: |
+        npm install -g testim xunit-viewer jq
+
+    - name: 🧪 Run Testim Tests
+      run: |
+        chmod +x run-tests.sh
+        ./run-tests.sh
+      env:
+        TESTIM_TOKEN: ${{ secrets.TESTIM_TOKEN }}
+        TESTIM_PROJECT_ID: ${{ secrets.TESTIM_PROJECT_ID }}
+
+    - name: 📤 Upload HTML Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: testim-html-report
+        path: results/report.html

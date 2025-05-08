@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testsuites>
+  <testsuite name="selenium run" tests="2" failures="0" timestamp="2025-05-08T09:20:59.460Z" skipped="0" failure-evaluating="0">
+    <testcase name="Login" classname="testim.io.test" time="8.194" ownedBy="Adam Jeng" ownerEmail="adam.jeng@wearesprout.se">
+      <system-out>https://app.testim.io/#/project/J9u1Q14Ke7VDKExPEztR/branch/master/test/z5KkxdYIb5XsjSx2?result-id=nw0QH76mWwcCfZYY</system-out>
+    </testcase>
+    <testcase name="Navigate index page" classname="testim.io.test" time="10.785" ownedBy="Adam Jeng" ownerEmail="adam.jeng@wearesprout.se">
+      <system-out>https://app.testim.io/#/project/J9u1Q14Ke7VDKExPEztR/branch/master/test/td8pitosyIwutcgF?result-id=gT5F78CiPMQxCLSz</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
