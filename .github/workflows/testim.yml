@@ -8,7 +8,7 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v4
               with:
-                node-version: '20'
+                node-version: '24'
                 # You can also change 'lts' to any supported LTS Node.js version.
             - run: npm install -g @testim/testim-cli
             - run: testim --token "MyhamT4qXSVHhYKt4I6YT1gWb2bMhL5g3mOeMHgpjo7yCEEv6t" --project "J9u1Q14Ke7VDKExPEztR" --grid "Testim-Grid" --parallel 2
