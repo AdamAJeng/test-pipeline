@@ -11,4 +11,5 @@ jobs:
                 node-version: '23'
                 # You can also change 'lts' to any supported LTS Node.js version.
             - run: npm install -g @testim/testim-cli
-            - run: testim --token "MyhamT4qXSVHhYKt4I6YT1gWb2bMhL5g3mOeMHgpjo7yCEEv6t" --project "J9u1Q14Ke7VDKExPEztR" --grid "Testim-Grid" --parallel 2
+            - run: testim --token $TESTIM_TOKEN --project $TESTIM_PROJECT_ID --grid "Testim-Grid" --parallel 2
+
