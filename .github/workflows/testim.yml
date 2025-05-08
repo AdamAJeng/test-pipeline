@@ -2,14 +2,23 @@ name: Testim E2E
 on: [push]
 
 jobs:
-    run-testimio-cli:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4.2.2
-            - uses: actions/setup-node@v4.4.0
-              with:
-                node-version: '23'
-                # You can also change 'lts' to any supported LTS Node.js version.
-            - run: npm install -g @testim/testim-cli
-            - run: testim --token "$TESTIM_TOKEN" --project "$TESTIM_PROJECT_ID" --grid "Testim-Grid" --parallel 2
+  run-testimio-cli:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: ⬇️ Checkout code
+      uses: actions/checkout@v4.2.2
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4.4.0
+      with:
+        node-version: 20
+
+    - name: 📦 Install dependencies
+      run: |
+        npm install -g testim jq
+
+    - name: 🧪 Run Testim Tests
+      run: |
+        chmod +x run-tests.sh
+        ./run-tests-on-grid.sh
