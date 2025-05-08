@@ -20,4 +20,4 @@ fi
 
 # Step 3: Run Testim and export results
 echo "🚀 Running Testim CLI..."
-testim --token "$TESTIM_TOKEN" --project "$TESTIM_PROJECT_ID" --grid "Testim-Grid" --mode "selenium" --parallel 2
+testim --token "$TESTIM_TOKEN" --project "$TESTIM_PROJECT_ID" --grid "Testim-Grid" --parallel 2
