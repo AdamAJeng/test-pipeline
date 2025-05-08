@@ -1,4 +1,4 @@
-name: Testim E2E
+name: Testim E2E in Docker
 on: [push]
 
 permissions:
@@ -6,32 +6,22 @@ permissions:
   checks: write
 
 jobs:
-  run-testimio-cli:
+  run-testimio-docker:
     runs-on: ubuntu-latest
 
     steps:
     - name: ⬇️ Checkout code
       uses: actions/checkout@v4.2.2
 
-    - name: 🟢 Setup Node.js
-      uses: actions/setup-node@v4.4.0
-      with:
-        node-version: 23
+    - name: 🐳 Build Docker image
+      run: docker build -t testim-runner .
 
-    - name: 📦 Install dependencies
-      run: |
-        npm install -g @testim/testim-cli
-        npm install -g commander xunit-viewer
-        sudo apt-get install -y jq
-
-    - name: 🧪 Run Testim Tests
-      run: |
-        chmod +x run-tests-on-grid.sh
-        ./run-tests-on-grid.sh
+    - name: 🧪 Run tests inside Docker
+      run: docker run --rm -v ${{ github.workspace }}/results:/app/results testim-runner
 
     - name: 📄 Generate HTML Report
       run: |
-        xunit-viewer --results results --file test-results.xml --output results/report.html
+        npx xunit-viewer --results results --file test-results.xml --output results/report.html
 
     - name: 📤 Upload HTML Report
       uses: actions/upload-artifact@v4
