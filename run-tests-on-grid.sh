@@ -18,17 +18,17 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-TOKEN=$(jq -r '.token' "$CONFIG_FILE")
-PROJECT_ID=$(jq -r '.projectId' "$CONFIG_FILE")
+TESTIM_TOKEN=$(jq -r '.token' "$CONFIG_FILE")
+TESTIM_PROJECT_ID=$(jq -r '.projectId' "$CONFIG_FILE")
 
-if [ -z "$TOKEN" ] || [ -z "$PROJECT_ID" ]; then
+if [ -z "$TESTIM_TOKEN" ] || [ -z "$TESTIM_PROJECT_ID" ]; then
     echo "❌ projectId or token is missing or empty in $CONFIG_FILE"
     exit 1
 fi
 
 # Step 3: Run Testim and export results
 echo "🚀 Running Testim CLI..."
-testim --token "$TOKEN" --project "$PROJECT_ID" --grid "Testim-Grid" --mode "selenium" --parallel 2 --report-file "$RESULTS_DIR/$XML_FILE" | tee "$RESULTS_DIR/testim.log"
+testim --token "$TESTIM_TOKEN" --project "$TESTIM_PROJECT_ID" --grid "Testim-Grid" --mode "selenium" --parallel 2 --report-file "$RESULTS_DIR/$XML_FILE" | tee "$RESULTS_DIR/testim.log"
 
 # Step 4: Verify results file exists
 if [ ! -f "$RESULTS_DIR/$XML_FILE" ]; then
