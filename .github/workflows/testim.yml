@@ -1,6 +1,10 @@
 name: Testim E2E
 on: [push]
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   run-testimio-cli:
     runs-on: ubuntu-latest
