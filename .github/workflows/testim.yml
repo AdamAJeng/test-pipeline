@@ -36,7 +36,7 @@ jobs:
     - name: 🧹 Clean up old reports
       run: |
         rm -rf ./public
-        
+
     - name: 🚀 Deploy report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
