@@ -16,7 +16,7 @@ jobs:
 
     - name: 📦 Install dependencies
       run: |
-        npm install -g testim
+        npm install -g @testim/testim-cli
         npm install -g commander # Add commander to fix the error
         sudo apt-get install jq # Ensure jq is available as a CLI tool
 

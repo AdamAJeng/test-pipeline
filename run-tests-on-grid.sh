@@ -18,6 +18,6 @@ if [ -z "$TESTIM_TOKEN" ] || [ -z "$TESTIM_PROJECT_ID" ]; then
     exit 1
 fi
 
-# Step 3: Run Testim and export results
+# Step 3: Run Testim
 echo "🚀 Running Testim CLI..."
 testim --token "$TESTIM_TOKEN" --project "$TESTIM_PROJECT_ID" --grid "Testim-Grid" --parallel 2
