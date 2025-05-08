@@ -3,8 +3,6 @@
 set -e
 
 CONFIG_FILE="testim-config.json"
-RESULTS_DIR="results"
-XML_FILE="test-results.xml"
 
 # Step 1: Load configuration from JSON
 if [ ! -f "$CONFIG_FILE" ]; then
@@ -20,15 +18,15 @@ if [ -z "$TESTIM_TOKEN" ] || [ -z "$TESTIM_PROJECT_ID" ]; then
     exit 1
 fi
 
-# Step 2: Ensure results directory exists
-mkdir -p "$RESULTS_DIR"
+# Step 2: Clean up old results (if any)
+mkdir -p results
+rm -f results/test-results.xml results/report.html results/testim.log
 
-# Step 3: Run Testim and export results
+# Step 3: Run Testim
 echo "🚀 Running Testim CLI..."
 testim --token "$TESTIM_TOKEN" \
        --project "$TESTIM_PROJECT_ID" \
        --grid "Testim-Grid" \
        --mode "selenium" \
        --parallel 2 \
-       --report-file "$RESULTS_DIR/$XML_FILE" \
-       | tee "$RESULTS_DIR/testim.log"
+       --report-file results/test-results.xml | tee results/testim.log
