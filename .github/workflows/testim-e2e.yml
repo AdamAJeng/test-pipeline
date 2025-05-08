@@ -12,32 +12,31 @@ jobs:
       image: testim/docker-cli:latest
 
     steps:
-      - name: ⬇️ Checkout code
-        uses: actions/checkout@v4
+    - name: ⬇️ Checkout code
+      uses: actions/checkout@v4
 
-      - name: 🔧 Install jq and xunit-viewer
-        run: |
-          apt-get update
-          apt-get install -y jq
-          npm install -g xunit-viewer
+    - name: 🔧 Install jq and xunit-viewer
+      run: |
+        apt-get update && apt-get install -y jq
+        npm install -g xunit-viewer
 
-      - name: 🧪 Run Testim Tests
-        run: |
-          chmod +x run-tests-on-grid.sh
-          ./run-tests-on-grid.sh
+    - name: 🧪 Run Testim Tests
+      run: |
+        chmod +x run-tests-on-grid.sh
+        ./run-tests-on-grid.sh
 
-      - name: 📄 Generate HTML Report
-        run: |
-          xunit-viewer --results results --file test-results.xml --output results/report.html
+    - name: 📄 Generate HTML Report
+      run: |
+        xunit-viewer --results results --file test-results.xml --output results/report.html
 
-      - name: 📤 Upload HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: testim-html-report
-          path: results/report.html
+    - name: 📤 Upload HTML Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: testim-html-report
+        path: results/report.html
 
-      - name: 📄 Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: results/test-results.xml
+    - name: 📄 Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: results/test-results.xml
