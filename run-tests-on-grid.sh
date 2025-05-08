@@ -28,6 +28,7 @@ echo "🚀 Running Testim CLI..."
 testim --token "$TESTIM_TOKEN" \
        --project "$TESTIM_PROJECT_ID" \
        --grid "Testim-Grid" \
+       --mode "selenium" \
        --parallel 2 \
        --report-file "$RESULTS_DIR/$XML_FILE" \
        | tee "$RESULTS_DIR/testim.log"
