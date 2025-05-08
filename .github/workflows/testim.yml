@@ -1,3 +1,14 @@
+name: Testim E2E
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   run-testimio-cli:
     runs-on: ubuntu-latest
@@ -25,8 +36,8 @@ jobs:
     - name: 🧹 Clean up old reports
       run: |
         rm -rf ./public
-
-    - name: 📝 Deploy Test Report to GitHub Pages
+        
+    - name: 🚀 Deploy report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -34,4 +45,5 @@ jobs:
         publish_branch: gh-pages
 
     - name: 🔗 Output Report URL
-      run: echo "📄 Test Report: https://adamajeng.github.io/test-pipeline/report.html"
+      run: |
+        echo "📄 Test Report: https://adamajeng.github.io/test-pipeline/report.html"
