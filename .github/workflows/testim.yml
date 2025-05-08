@@ -1,9 +1,5 @@
 name: Testim E2E
-
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 permissions:
   contents: read
@@ -25,25 +21,26 @@ jobs:
     - name: 📦 Install dependencies
       run: |
         npm install -g @testim/testim-cli
-        npm install -g commander
-        sudo apt-get install jq
+        npm install -g commander xunit-viewer
+        sudo apt-get install -y jq
 
     - name: 🧪 Run Testim Tests
       run: |
         chmod +x run-tests-on-grid.sh
         ./run-tests-on-grid.sh
 
-    - name: 🧹 Clean up old reports
+    - name: 📄 Generate HTML Report
       run: |
-        rm -rf ./public
+        xunit-viewer --results results --file test-results.xml --output results/report.html
 
-    - name: 🚀 Deploy report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: 📤 Upload HTML Report
+      uses: actions/upload-artifact@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./results
-        publish_branch: gh-pages
+        name: testim-html-report
+        path: results/report.html
 
-    - name: 🔗 Output Report URL
-      run: |
-        echo "📄 Test Report: https://adamajeng.github.io/test-pipeline/report.html"
+    - name: 📄 Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: results/test-results.xml
